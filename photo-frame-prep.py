@@ -14,26 +14,30 @@ class MyApp(gui.MyFrame):
 		gui.MyFrame.__init__(self, *args, **kwds) #call base class init
 		#bind event handler for go button
 		self.gobutton.Bind(wx.EVT_BUTTON,  self.goClicked)
-		self.inputBrowse.Bind(wx.EVT_BUTTON,  self.browseInput)
+		self.inputBrowseFile.Bind(wx.EVT_BUTTON,  self.browseInputFile)
+		self.inputBrowseFolder.Bind(wx.EVT_BUTTON,  self.browseinputPath)
 		self.outputBrowse.Bind(wx.EVT_BUTTON,  self.browseOutput)
 		
 	#event handler for go button
 	def goClicked(self,  event):
 		print 'go clicked'
 		#TODO fail if paths missing / invalid
-		processor = PhotoProcessing(self.outputfolder.GetValue())
-		processor.processPhoto(self.inputfolder.GetValue())
+		processor = PhotoProcessing(self.outputPath.GetValue())
+		processor.process(self.inputPath.GetValue())
 		
-	def browseInput(self, event):
-		self.browseFile(self.inputfolder)
+	def browseInputFile(self, event):
+		self.browseFile(self.inputPath)
+		
+	def browseinputPath(self, event):
+		self.browseFolder(self.inputPath)
 		
 	def browseOutput(self, event):
-		self.browseFolder(self.outputfolder)
+		self.browseFolder(self.outputPath)
 		
 	def browseFile(self,  target):
 		dlg = wx.FileDialog(self, message="Choose a file")
 		filename = ""
-		dlg.SetPath(target.GetValue()) #open at last location
+		dlg.SetPath(os.path.dirname(target.GetValue())) #open at last location
 		if dlg.ShowModal() == wx.ID_OK:
 			filename = dlg.GetPath()
 		if filename:
@@ -46,7 +50,7 @@ class MyApp(gui.MyFrame):
 		if dlg.ShowModal() == wx.ID_OK:
 			filename = dlg.GetPath()
 		if filename:
-			target.SetValue(filename)
+			target.SetValue(filename + '/')
 
 #main class for doing the work of this application
 class PhotoProcessing():
@@ -55,8 +59,15 @@ class PhotoProcessing():
 		global output
 		output=outputPath
 		
-	def  processFolder(self,  inputFolder):
-		print 'processing folder ',  inputFolder
+	#process file or folder (recursively)
+	def  process(self,  inputPath):
+		if os.path.basename(inputPath)=="": #check if path has a filename
+			self.processFolder(inputPath)
+		else:
+			self.processPhoto(inputPath)
+		
+	def  processFolder(self,  inputPath):
+		print 'processing folder ',  inputPath
 		
 	def processPhoto(self,  inputPhotoPath):
 		print 'processing photo, path: ',  inputPhotoPath,  ' output path: ',  output
