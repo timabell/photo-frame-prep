@@ -16,7 +16,21 @@ class MyApp(gui.MyFrame):
 	#event handler for go button
 	def goClicked(source,  event):
 		print 'clicked'
+		processor = PhotoProcessing(source.outputfolder.GetValue())
+		processor.processFolder(source.inputfolder.GetValue())
 
+
+class PhotoProcessing():
+	output = ''
+	def __init__(self,  outputPath):
+		global output
+		output=outputPath
+		
+	def processPhoto(self,  inputPhotoPath):
+		print 'processing photo, input photo path: ',  inputPhotoPath,  ' output path: ',  output
+		
+	def  processFolder(self,  inputFolder):
+		print 'processing folder ',  inputFolder
 
 print 'starting up app...'
 app = wx.App() # um, something to initialize the app i guess. don't really know
