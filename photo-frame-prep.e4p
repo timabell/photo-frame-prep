@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-4.2.dtd">
+<!-- eric4 project file for project photo-frame-prep -->
+<!-- Saved: 2008-10-04, 18:43:09 -->
+<!-- Copyright (C) 2008 Tim Abell, tim.abell@timwise.co.uk -->
+<Project version="4.2">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <ProjectType>wxPython</ProjectType>
+  <Description></Description>
+  <Version>0.1</Version>
+  <Author>Tim Abell</Author>
+  <Email>tim.abell@timwise.co.uk</Email>
+  <Sources>
+    <Source>
+      <Name>gui.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Resources>
+  </Resources>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.pyw" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>
