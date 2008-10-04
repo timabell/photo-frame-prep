@@ -4,6 +4,7 @@
 
 import wx #import normal wxPython widgets library
 import gui # import wxGlade generated gui from gui.py
+import shutil #file utilities
 
 #inherit from the gui class
 
@@ -15,9 +16,9 @@ class MyApp(gui.MyFrame):
 		
 	#event handler for go button
 	def goClicked(source,  event):
-		print 'clicked'
+		print 'go clicked'
 		processor = PhotoProcessing(source.outputfolder.GetValue())
-		processor.processFolder(source.inputfolder.GetValue())
+		processor.processPhoto(source.inputfolder.GetValue())
 
 
 class PhotoProcessing():
@@ -26,11 +27,17 @@ class PhotoProcessing():
 		global output
 		output=outputPath
 		
-	def processPhoto(self,  inputPhotoPath):
-		print 'processing photo, input photo path: ',  inputPhotoPath,  ' output path: ',  output
-		
 	def  processFolder(self,  inputFolder):
 		print 'processing folder ',  inputFolder
+		
+	def processPhoto(self,  inputPhotoPath):
+		print 'processing photo, path: ',  inputPhotoPath,  ' output path: ',  output
+		#copy to output folder
+		shutil.copy(inputPhotoPath,  output)
+		#rotate to match exif rotate tag
+		#exiftran -ai "$INPUTFILE"
+		#resize and add black background if aspect ratio doesn't match frame size
+		#convert "$INPUTFILE" -resize '800x600>' -background black -gravity center -extent 800x600 "$INPUTFILE"
 
 print 'starting up app...'
 app = wx.App() # um, something to initialize the app i guess. don't really know
