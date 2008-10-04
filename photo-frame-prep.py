@@ -1,14 +1,14 @@
 #!/usr/bin/python
 
-# http://www.zetcode.com/wxpython/firststeps/ - how to show a frame
-
+#standard library imports
 import wx #import normal wxPython widgets library
-import gui # import wxGlade generated gui from gui.py
 import shutil #file utilities
 import os #to execute shell commands (ideally remove this and use native python libaries to deal with images)
 
-#inherit from the gui class
+#local module imports
+import gui # import wxGlade generated gui from gui.py
 
+#inherit from the gui class to separate hand crafted code from generated form code
 class MyApp(gui.MyFrame):
 	def __init__(self, *args, **kwds):
 		gui.MyFrame.__init__(self, *args, **kwds) #call base class init
@@ -21,7 +21,7 @@ class MyApp(gui.MyFrame):
 		processor = PhotoProcessing(source.outputfolder.GetValue())
 		processor.processPhoto(source.inputfolder.GetValue())
 
-
+#main class for doing the work of this application
 class PhotoProcessing():
 	output = ''
 	def __init__(self,  outputPath):
@@ -46,6 +46,7 @@ class PhotoProcessing():
 		os.system('convert "' + outputfile  + '" -resize \'800x600>\' -background black -gravity center -extent 800x600 ' + outputfile)
 		#convert "$INPUTFILE" -resize '800x600>' -background black -gravity center -extent 800x600 "$INPUTFILE"
 
+#program flow starts here.
 print 'starting up app...'
 app = wx.App() # um, something to initialize the app i guess. don't really know
 frame = MyApp(None, -1,  'photo-frame-prep.py') # load the frame overriden gui class
