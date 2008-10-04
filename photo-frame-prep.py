@@ -68,6 +68,9 @@ class PhotoProcessing():
 		
 	def  processFolder(self,  inputPath):
 		print 'processing folder ',  inputPath
+		for path, dirs, files in os.walk(inputPath):
+			for file in files:
+				self.processPhoto(os.path.join(path, file))
 		
 	def processPhoto(self,  inputPhotoPath):
 		print 'processing photo, path: ',  inputPhotoPath,  ' output path: ',  output
