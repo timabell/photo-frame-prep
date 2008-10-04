@@ -5,6 +5,7 @@
 import wx #import normal wxPython widgets library
 import gui # import wxGlade generated gui from gui.py
 import shutil #file utilities
+import os #to execute shell commands (ideally remove this and use native python libaries to deal with images)
 
 #inherit from the gui class
 
@@ -32,11 +33,17 @@ class PhotoProcessing():
 		
 	def processPhoto(self,  inputPhotoPath):
 		print 'processing photo, path: ',  inputPhotoPath,  ' output path: ',  output
+		filename = os.path.basename(inputPhotoPath)
 		#copy to output folder
 		shutil.copy(inputPhotoPath,  output)
+		outputfile = output + filename
 		#rotate to match exif rotate tag
+		print 'executing exiftran -ai ',  outputfile 
+		os.system('exiftran -ai ' + outputfile )
 		#exiftran -ai "$INPUTFILE"
 		#resize and add black background if aspect ratio doesn't match frame size
+		print 'convert "' + outputfile  + '" -resize \'800x600>\' -background black -gravity center -extent 800x600 ' + outputfile 
+		os.system('convert "' + outputfile  + '" -resize \'800x600>\' -background black -gravity center -extent 800x600 ' + outputfile)
 		#convert "$INPUTFILE" -resize '800x600>' -background black -gravity center -extent 800x600 "$INPUTFILE"
 
 print 'starting up app...'
