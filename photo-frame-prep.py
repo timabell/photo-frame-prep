@@ -14,12 +14,39 @@ class MyApp(gui.MyFrame):
 		gui.MyFrame.__init__(self, *args, **kwds) #call base class init
 		#bind event handler for go button
 		self.gobutton.Bind(wx.EVT_BUTTON,  self.goClicked)
+		self.inputBrowse.Bind(wx.EVT_BUTTON,  self.browseInput)
+		self.outputBrowse.Bind(wx.EVT_BUTTON,  self.browseOutput)
 		
 	#event handler for go button
-	def goClicked(source,  event):
+	def goClicked(self,  event):
 		print 'go clicked'
-		processor = PhotoProcessing(source.outputfolder.GetValue())
-		processor.processPhoto(source.inputfolder.GetValue())
+		#TODO fail if paths missing / invalid
+		processor = PhotoProcessing(self.outputfolder.GetValue())
+		processor.processPhoto(self.inputfolder.GetValue())
+		
+	def browseInput(self, event):
+		self.browseFile(self.inputfolder)
+		
+	def browseOutput(self, event):
+		self.browseFolder(self.outputfolder)
+		
+	def browseFile(self,  target):
+		dlg = wx.FileDialog(self, message="Choose a file")
+		filename = ""
+		dlg.SetPath(target.GetValue()) #open at last location
+		if dlg.ShowModal() == wx.ID_OK:
+			filename = dlg.GetPath()
+		if filename:
+			target.SetValue(filename)
+		
+	def browseFolder(self,  target):
+		dlg = wx.DirDialog(self, message="Choose a file")
+		filename = ""
+		dlg.SetPath(target.GetValue()) #open at last location
+		if dlg.ShowModal() == wx.ID_OK:
+			filename = dlg.GetPath()
+		if filename:
+			target.SetValue(filename)
 
 #main class for doing the work of this application
 class PhotoProcessing():
@@ -36,9 +63,9 @@ class PhotoProcessing():
 		filename = os.path.basename(inputPhotoPath)
 		#copy to output folder
 		shutil.copy(inputPhotoPath,  output)
-		outputfile = output + filename
+		outputfile = os.path.join(output, filename)
 		#rotate to match exif rotate tag
-		print 'executing exiftran -ai ',  outputfile 
+		print 'executing exiftran -ai ',  outputfile
 		os.system('exiftran -ai ' + outputfile )
 		#exiftran -ai "$INPUTFILE"
 		#resize and add black background if aspect ratio doesn't match frame size
