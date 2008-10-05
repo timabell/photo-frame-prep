@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.2.dtd">
 <!-- eric4 project file for project photo-frame-prep -->
-<!-- Saved: 2008-10-04, 18:43:09 -->
+<!-- Saved: 2008-10-05, 00:55:52 -->
 <!-- Copyright (C) 2008 Tim Abell, tim.abell@timwise.co.uk -->
 <Project version="4.2">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -14,6 +14,9 @@
     <Source>
       <Name>gui.py</Name>
     </Source>
+    <Source>
+      <Name>photo-frame-prep.py</Name>
+    </Source>
   </Sources>
   <Forms>
   </Forms>
@@ -25,6 +28,9 @@
   </Interfaces>
   <Others>
   </Others>
+  <MainScript>
+    <Name>photo-frame-prep.py</Name>
+  </MainScript>
   <Vcs>
     <VcsType>None</VcsType>
   </Vcs>
