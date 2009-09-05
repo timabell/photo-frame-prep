@@ -1,5 +1,5 @@
 *#
 gui.py
 *.pyc
-packaging/photoframeprep
+debian/photoframeprep
 photoframeprep*.deb
