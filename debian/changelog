@@ -1,6 +1,5 @@
-photoframeprep (0.1) unstable, urgency=low
+photoframeprep (0.1) unstable; urgency=low
 
- * Initial release
+  * Initial release.
 
--- Tim Abell <tim@timwise.co.uk> Sat, 05 Sep 2009 06:22:58 +0100
-
+ -- Tim Abell <tim@timwise.co.uk>  Sat, 05 Sep 2009 06:36:06 +0100
