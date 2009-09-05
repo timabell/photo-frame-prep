@@ -2,7 +2,7 @@
 
 # ###############################################################
 #	Photo Frame Prep, a python gui program for preparing digital photos for your digital picture frame
-#	Copyright (C) 2008 Tim Abell <tim.abell@timwise.co.uk>
+#	Copyright (C) 2008 Tim Abell <tim@timwise.co.uk>
 #
 #	This program is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
