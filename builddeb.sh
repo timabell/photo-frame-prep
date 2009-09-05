@@ -1,5 +1,5 @@
 #!/bin/bash
-version="0.1"
+version=$1
 packagename="photoframeprep_${version}_all.deb"
 mkdir -p packaging/photoframeprep/DEBIAN/
 mkdir -p packaging/photoframeprep/usr/bin/
