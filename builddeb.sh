@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "version from first arg, eg 0.1"
-version=$1 #get version from first arg
+version=$(cat version)
 packagename="photoframeprep_${version}_all.deb"
 packager="Tim Abell <tim@timwise.co.uk>"
 date=$(/bin/date)
