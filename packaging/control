@@ -1,7 +1,7 @@
 Package: photoframeprep
 Version: #version#
 Architecture: all
-Depends: python, exiftran, imagemagick
+Depends: python, exiftran, imagemagick, python-wxgtk2.6
 Maintainer: Tim Abell <tim@timwise.co.uk>
 Description: prepares digital photos for upload to a digital picture frame
  A graphical Python script for preparing digital photos for upload to a digital
