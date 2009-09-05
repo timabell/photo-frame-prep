@@ -1,4 +1,5 @@
 *#
 gui.py
 *.pyc
-packaging/photoframeprep*
+packaging/photoframeprep
+photoframeprep*.deb
