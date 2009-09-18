@@ -9,3 +9,6 @@ Description: prepares digital photos for upload to a digital picture frame
 Priority: optional
 Section: graphics
 Installed-Size: 5
+XB-Python-Version: ${python:Versions}
+XS-Python-Version: current
+
